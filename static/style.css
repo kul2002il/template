@@ -1,0 +1,161 @@
+
+*{
+	/*background-color: #00c1;/**/
+	/*margin: 0;
+	padding: 0;*/
+}
+
+body{
+	font-family: "Times New Roman", serif;
+	font-size: 14pt;
+}
+
+
+
+
+/* Титульник */
+
+.title_page{
+	height: 100%;
+
+	page-break-after: always;
+	text-align: center;
+	position: relative;
+}
+
+.title_page > *{
+	position: absolute;
+	width: 100%;
+}
+
+.title_page > :first-child{
+	position: relative;
+}
+
+.title_page > :nth-last-child(2){
+	bottom: 0cm;
+}
+
+.title_page > :last-child{
+	position: relative;
+	page-break-before: always;
+}
+
+.title_page table{
+	display: inline-block;
+	text-align: left;
+	right: 0;
+}
+
+.title_page table *{
+	vertical-align: bottom;
+}
+
+.discipline{
+	top: 5cm;
+}
+
+.title_work{
+	top: 9cm;
+}
+
+.signature{
+	text-align: right;
+	top: 14cm;
+}
+
+
+
+
+/* Форматирование */
+
+main > div{
+	page-break-after: always;
+}
+
+h1, h2, h3, h4, h5, h6{
+	page-break-inside: avoid;
+	page-break-after: avoid;
+}
+
+h2{
+	text-align: center;
+}
+
+p{
+	line-height: 1.5;
+	text-indent: 1.25cm;
+}
+
+li{
+	text-indent: 0;
+}
+
+.img{
+	text-align: center;
+}
+
+.img > img{
+	max-width: 100%;
+}
+
+.img > p{
+	font-size: 12pt;
+}
+
+
+
+
+/* Вспомогательное форматирование */
+ins{
+	background-color: #9ff;
+	text-decoration: none;
+}
+
+
+
+
+/* Отображение */
+@page{
+	size: A4; /*landscape*/
+	margin: 1cm 1.5cm 1cm 3cm;
+}
+
+@media screen{
+	body{
+		background-color: #ddd;
+	}
+
+	main{
+		width: 800px;
+		margin: 0 auto;
+	}
+
+	main > *{
+		padding: 1cm 1.5cm 1cm 3cm;
+		background-color: #fff;
+		margin-bottom: 10px;
+	}
+
+	.title_page{
+		/*padding: 0;/**/
+		height: 700px;
+	}
+
+	.title_page > *{
+		width: auto;
+	}
+
+	.discipline{
+		top: 25%;
+	}
+
+	.title_work{
+		top: 50%;
+	}
+
+	.signature{
+		text-align: right;
+		top: 65%;
+	}
+}
