@@ -56,12 +56,13 @@ body{
 }
 
 .title_work{
-	top: 9cm;
+	top: 45%;
+	transform: translateY(-50%);
 }
 
 .signature{
 	text-align: right;
-	top: 14cm;
+	top: 17cm;
 }
 
 
