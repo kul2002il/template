@@ -3,6 +3,7 @@
 	/*background-color: #00c1;/**/
 	/*margin: 0;
 	padding: 0;*/
+	line-height: 1.5;
 }
 
 body{
@@ -84,7 +85,6 @@ h2{
 }
 
 p{
-	line-height: 1.5;
 	text-indent: 1.25cm;
 	text-align: justify;
 }
@@ -97,12 +97,25 @@ li{
 	text-align: center;
 }
 
+.img > :first-child{
+	text-align: initial;
+}
+
 .img > img{
 	max-width: 100%;
 }
 
-.img > p{
+.img > div{
 	font-size: 12pt;
+}
+
+pre{
+	padding: 10px;
+	background-color: black;
+	color: white;
+	font-size: 10pt;
+	tab-size: 4;
+	white-space: pre-wrap;
 }
 
 
