@@ -1,10 +1,24 @@
 
-let tablesOfContents = {
-	table_contents: ["h2", "h3", "h4", "h5", "h6"]
-};
+/*
+	Простой счётчик для получения уникальных значений для индексов
+*/
+class Counter
+{
+	iterator = 0;
+	next()
+	{
+		return this.iterator++;
+	}
+}
+
+let It = new Counter;
 
 
 
+/*
+	Оформление содержания
+	Также расставляет id всем элементам, на которые требуется сослаться.
+*/
 function shiftTag(arr, level = 0)
 {
 	let out = [];
@@ -68,17 +82,25 @@ function renderTableOfContents(arr)
 }
 
 
-
-for (let key in tablesOfContents)
+function createTablesOfContents()
 {
-	let arr = document.querySelectorAll(tablesOfContents[key].join(','));
-
-	arr.forEach((el, index)=>{
-		el.id = index;
-		el.level = tablesOfContents[key].indexOf(el.tagName.toLowerCase());
+	let tablesOfContents = document.querySelectorAll("[data-index]");
+	tablesOfContents.forEach((tableOfContents, key)=>
+	{
+		let nodesName = tableOfContents.getAttribute("data-index").split('/');
+		let selector = ":is(" + nodesName.join(',') + "):not(.ignoreIndex)";
+		let nodesElement = document.querySelectorAll(selector);
+		nodesElement.forEach((el, index)=>{
+			if(!el.id)
+			{
+				el.id = It.next();
+			}
+			el.level = nodesName.indexOf(el.tagName.toLowerCase());
+		});
+		out = shiftTag([...nodesElement])
+		let out_content = renderTableOfContents(out);
+		tableOfContents.innerHTML = out_content;
 	});
-
-	out = shiftTag([...arr])
-	let out_content = renderTableOfContents(out);
-	document.getElementById(key).innerHTML = out_content;
 }
+
+createTablesOfContents();
