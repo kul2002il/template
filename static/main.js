@@ -88,7 +88,7 @@ function createTablesOfContents()
 	tablesOfContents.forEach((tableOfContents, key)=>
 	{
 		let nodesName = tableOfContents.getAttribute("data-index").split('/');
-		let selector = ":is(" + nodesName.join(',') + "):not(.ignoreIndex)";
+		let selector = nodesName.join(':not(.ignoreIndex),');
 		let nodesElement = document.querySelectorAll(selector);
 		nodesElement.forEach((el, index)=>{
 			if(!el.id)
@@ -104,3 +104,49 @@ function createTablesOfContents()
 }
 
 createTablesOfContents();
+
+/*
+	Расстановка сносок
+*/
+
+function createTablesNotes()
+{
+	let notes = document.querySelectorAll("[data-note-for]");
+	if(notes.length === 0)
+	{
+		return;
+	}
+	// Создание списка id листов для вставки
+	let listsNotes = new Set();
+	notes.forEach((el)=>{
+		listsNotes.add('#' + el.getAttribute("data-note-for"));
+	});
+	// Новый набор элементов, с целью соблюдения порядка.
+	let selector = "[data-note-for], " + [...listsNotes].join(',');
+	let elements = document.querySelectorAll(selector);
+	for(let key = 0; elements.length; key ++){
+		let noteFor = el.getAttribute("data-note-for");
+		if(!noteFor)
+		{
+			return;
+		}
+	}
+	console.log(elements);
+}
+
+createTablesNotes();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
