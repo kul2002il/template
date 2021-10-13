@@ -105,9 +105,69 @@ function createTablesOfContents()
 
 createTablesOfContents();
 
+
 /*
 	Расстановка сносок
 */
+
+/*
+	Сортировка объектов по их цели.
+	elements = [
+		{
+			for: mixed|undefined,
+			id: mixed|undefined,
+			value: mixed,
+		},…
+	];
+	out = [
+		{
+			container: value контейнера,
+			values:[
+				value дочерний,
+				…
+			]
+		}
+	]
+*/
+function sortObjByTarget(elements)
+{
+	let out = [];
+	let temp = {};
+	elements.forEach((el)=>{
+		if(el.for)
+		{
+			if(temp[el.for])
+			{
+				temp[el.for].push(el.value);
+			}
+			else
+			{
+				temp[el.for] = [el.value];
+			}
+		}
+		if(el.id)
+		{
+			if(temp[el.id])
+			{
+				out.push({
+					values: temp[el.id],
+					container: el.value,
+				});
+				delete temp[el.id];
+			}
+		}
+	});
+	return out;
+}
+
+/*
+*/
+function renderListNotes(element)
+{
+	let out = "";
+	
+	return out;
+}
 
 function createTablesNotes()
 {
@@ -124,20 +184,68 @@ function createTablesNotes()
 	// Новый набор элементов, с целью соблюдения порядка.
 	let selector = "[data-note-for], " + [...listsNotes].join(',');
 	let elements = document.querySelectorAll(selector);
-	for(let key = 0; elements.length; key ++){
-		let noteFor = el.getAttribute("data-note-for");
+	console.log(elements);
+	for(let key = 0; key < elements.length; key ++){
+		let noteFor = elements[key].getAttribute("data-note-for");
+		console.log(key + ' ' + noteFor);
 		if(!noteFor)
 		{
-			return;
+			continue;
 		}
+		let keyListElement = null;
+		for(let elFor = key + 1; elFor < elements.length; elFor++)
+		{
+			if(noteFor === elements[elFor].id)
+			{
+				keyListElement = elFor;
+				break;
+			}
+		}
+		if(!keyListElement)
+		{
+			throw "Элемент для сносок с id=\"" + noteFor + "\" не найден.";
+		}
+		elements[keyListElement].innerHTML +=
+			"<div>"
+			+ elements[key].innerHTML
+			+ "</div>";
+		elements[key].outerHTML =
+			"<a href=\"" + "\"><sup>[" + "]</sup></a>";
 	}
-	console.log(elements);
 }
 
-createTablesNotes();
+//createTablesNotes();
 
-
-
+//*
+console.log(sortObjByTarget(
+	[
+		{
+			for: "list1",
+			value: "Сноска 1 для листа1.1",
+		},
+		{
+			for: "list2",
+			value: "Сноска 2 для листа2",
+		},
+		{
+			id: "list1",
+			value: "Лист1.1",
+		},
+		{
+			value: "Сноска 3 для листа1.2",
+			for: "list1",
+		},
+		{
+			id: "list1",
+			value: "Лист1.2",
+		},
+		{
+			id: "list2",
+			value: "Лист2",
+		},
+	]
+));
+//*/
 
 
 

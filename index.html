@@ -71,44 +71,30 @@
 
 			<h3>Задание 1</h3>
 			<p>
-				Просто
-				<dl data-note-for="notes">
-					<dt>
-						текст
-					</dt>
-					<dd>
-						Простой текст1 для проверки форматов отрисовки.
-					</dd>
-				</dl>.
-				Согласно
-				<dl data-note-for="literature">
-					<dt>
-						Ленивому источнику
-					</dt>
-					<dd>
-						Ленивый источник, §16, п. 7.
-					</dd>
-				</dl>
+				Просто текст
+				<span data-note-for="notes">
+					Простой текст2 для проверки форматов отрисовки.
+				</span>.
+				Согласно Ленивому источнику
+				<span data-note-for="literature">
+					Ленивый источник, §16, п. 7
+					«О присутствии сноски в примере её использования.»
+				</span>
+				в данном предложении присутствует сноска
 			</p>
 
 			<h4>Сноски задания 1</h4>
-			<dl id="notes"></dl>
+			<dl data-note-container="notes"></dl>
 
 			<h3>Задание 2</h3>
 			<p>
-				Просто
-				<dl data-note-for="notes">
-					<dt>
-						текст
-					</dt>
-					<dd>
-						Простой текст2 для проверки форматов отрисовки.
-					</dd>
-				</dl>.
+				Просто текст<span data-note-for="notes">
+					Простой текст2 для проверки форматов отрисовки.
+				</span>.
 			</p>
 
 			<h4>Сноски задания 2</h4>
-			<dl id="notes"></dl>
+			<dl data-note-container="notes"></dl>
 		</div>
 
 		<div>
@@ -120,7 +106,7 @@
 
 		<div>
 			<h2>Литература</h2>
-			<dl id="literature"></dl>
+			<dl data-note-container="literature"></dl>
 		</div>
 	</main>
 </body>
