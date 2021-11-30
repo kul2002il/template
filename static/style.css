@@ -118,6 +118,19 @@ pre{
 	white-space: pre-wrap;
 }
 
+.lined-table{
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.lined-table th, .lined-table td {
+	border: 1px solid grey;
+}
+
+.vtext{
+	writing-mode: vertical-rl;
+}
+
 
 
 
